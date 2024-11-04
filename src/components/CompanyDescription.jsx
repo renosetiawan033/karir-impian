@@ -23,8 +23,13 @@ const CompanyDescription = () => {
   }, [error]);
 
   if (!singleCompany) {
-    return <div>No company data found.</div>; // Handle case where company data is not available
+    return <div>Tidak ada data perusahaan yang ditemukan.</div>; // Handle case where company data is not available
   }
+
+  // Ensure the website URL is valid
+  const websiteUrl = singleCompany.website.startsWith('http://') || singleCompany.website.startsWith('https://')
+    ? singleCompany.website
+    : `http://${singleCompany.website}`;
 
   return (
     <div>
@@ -56,7 +61,14 @@ const CompanyDescription = () => {
             <span className="pl-4 font-normal text-gray-800">{singleCompany.description}</span>
           </h1>
           <h1 className="font-bold my-1">Website 
-            <span className="pl-4 font-normal text-gray-800">{singleCompany.website}</span>
+            <a 
+              href={websiteUrl} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="pl-4 font-normal text-gray-800 underline"
+            >
+              {singleCompany.website}
+            </a>
           </h1>
           <h1 className="font-bold my-1">Lokasi 
             <span className="pl-4 font-normal text-gray-800">{singleCompany.location}</span>

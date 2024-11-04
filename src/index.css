@@ -74,3 +74,34 @@
   text-decoration: underline; /* Garis bawah muncul saat hover atau fokus */
 }
 
+.link {
+  position: relative;
+  color: black; /* Default color */
+}
+
+.link.active {
+  color: blue; /* Color when the link is active */
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px; /* Adjust to move the line down */
+  height: 2px; /* Thickness of the line */
+  background-color: transparent; /* Initially transparent */
+  transition: background-color 0.3s ease;
+}
+
+.link:hover::after {
+  background-color: #A9A9A9; /* Color when hovered */
+}
+
+.link.active::after {
+  background-color: #0039FF; /* Keep the line when active */
+}
+
+
+
+

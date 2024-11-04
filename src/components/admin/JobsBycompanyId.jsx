@@ -20,7 +20,7 @@ const JobsByCompanyId = () => {
     }, [input, dispatch]);
 
     if (!isLoggedIn) {
-        return <div>Please log in to see the jobs.</div>;
+        return <div>Silakan masuk untuk melihat pekerjaan.</div>;
     }
 
     return (
@@ -40,7 +40,7 @@ const JobsByCompanyId = () => {
                 {jobs.length > 0 ? (
                     <JobsByCompanyIdTable jobs={jobs} />
                 ) : (
-                    <div>No jobs found for this company.</div>
+                    <div>Tidak ada pekerjaan ditemukan untuk perusahaan ini.</div>
                 )}
             </div>
         </div>

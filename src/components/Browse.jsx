@@ -20,7 +20,7 @@ const Browse = () => {
     <div>
       <Navbar />
       <div className='max-w-7xl mx-auto my-10'>
-        <h1 className='font-bold text-xl my-10'>Search Results ({allJobs.length})</h1>
+        <h1 className='font-bold text-xl my-10'>Hasil Pencarian ({allJobs.length})</h1>
         
         {error ? (
           <p className="text-center text-lg text-red-500">Terjadi kesalahan: {error}</p> // Tampilkan pesan kesalahan

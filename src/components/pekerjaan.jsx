@@ -39,7 +39,7 @@ const Pekerjaan = () => {
                 {jobs.length > 0 ? (
                     <DataPekerjaan jobs={jobs} />
                 ) : (
-                    <div>No jobs found for this company.</div>
+                    <div>Tidak ada pekerjaan ditemukan untuk perusahaan ini.</div>
                 )}
             </div>
         </div>

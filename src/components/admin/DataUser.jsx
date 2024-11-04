@@ -48,6 +48,7 @@ const DataUser = () => {
                     <TableRow>
                         <TableHead>Profile</TableHead>
                         <TableHead>Nama</TableHead>
+                        <TableHead>Email</TableHead>
                         <TableHead>Tanggal Bergabung</TableHead>
                         <TableHead>Peran</TableHead>
                         <TableHead className='text-center'>Tindakan</TableHead>
@@ -62,6 +63,7 @@ const DataUser = () => {
                                 </Avatar>
                             </TableCell>
                             <TableCell>{user.fullname}</TableCell>
+                            <TableCell>{user.email}</TableCell>
                             <TableCell>{new Date(user.createdAt).toLocaleDateString()}</TableCell>
                             <TableCell>{user.role}</TableCell>
                             <TableCell>

@@ -109,7 +109,7 @@ const DateCompany = () => {
                                         </PopoverTrigger>
                                             <PopoverContent className="w-32">
                                                 {loading ? (
-                                                    <div>Loading...</div>
+                                                    <div>Silakan Tunggu...</div>
                                                 ) : (
                                                     shortlistingStatus.map((status) => (
                                                         <div

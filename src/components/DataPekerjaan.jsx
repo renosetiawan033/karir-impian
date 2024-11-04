@@ -7,6 +7,7 @@ import axios from "axios";
 import { setSingleJob } from "@/redux/jobSlice";
 import { toast } from "sonner";
 import { useSelector, useDispatch } from "react-redux";
+import { motion } from "framer-motion";
 
 const DataPekerjaan = ({ jobs = [] }) => {
   const dispatch = useDispatch();
@@ -34,7 +35,6 @@ const DataPekerjaan = ({ jobs = [] }) => {
       });
 
       if (res.data.success) {
-        // Update AppliedJobs state
         setAppliedJobs(prev => ({ ...prev, [jobId]: true }));
         
         const updateSingleJob = { 
@@ -51,10 +51,16 @@ const DataPekerjaan = ({ jobs = [] }) => {
   };
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {jobs.length > 0 ? (
         jobs.map((job) => (
-          <div key={job._id} className="p-5 rounded-lg shadow-lg bg-white border border-gray-100 max-w-md h-full">
+          <motion.div
+            key={job._id}
+            className="p-6 rounded-lg shadow-lg bg-white border border-gray-200 transition-transform duration-300 hover:shadow-xl"
+            initial={{ opacity: 0, translateY: 20 }}
+            animate={{ opacity: 1, translateY: 0 }}
+            whileHover={{ scale: 1.03 }}
+          >
             <div className="flex items-center justify-between">
               <p className="text-sm text-gray-500">
                 {daysAgoFunction(job.createdAt) === 0
@@ -84,7 +90,7 @@ const DataPekerjaan = ({ jobs = [] }) => {
                 {AppliedJobs[job._id] ? 'Sudah Melamar' : 'Lamar'}
               </Button>
             </div>
-          </div>
+          </motion.div>
         ))
       ) : (
         <div className="col-span-1 sm:col-span-2 lg:col-span-3 text-center">

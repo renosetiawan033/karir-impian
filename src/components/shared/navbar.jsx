@@ -3,7 +3,7 @@ import logo from "../../assets/logo.jpg";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
-import { User2, LogOut, Settings } from "lucide-react"; // Import the Settings icon
+import { User2, LogOut, Settings } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
@@ -36,9 +36,7 @@ const Navbar = () => {
     }
   };
 
-  const linkStyle = (path) => ({
-    color: location.pathname === path ? "blue" : "black",
-  });
+  const isActive = (path) => location.pathname === path ? "active" : "";
 
   return (
     <div className="bg-white">
@@ -58,30 +56,58 @@ const Navbar = () => {
                 {user.role === "administrator" && (
                   <>
                     <li>
-                      <Link to="/admin/company" style={linkStyle("/admin/company")}>Perusahaan</Link>
+                      <Link to="/admin/company" className={`link ${isActive("/admin/company")}`}>
+                        Perusahaan
+                      </Link>
                     </li>
                     <li>
-                      <Link to="/admin/pengguna" style={linkStyle("/admin/pengguna")}>Pengguna</Link>
+                      <Link to="/admin/pengguna" className={`link ${isActive("/admin/pengguna")}`}>
+                        Pengguna
+                      </Link>
                     </li>
                   </>
                 )}
                 {user.role === "business" && (
                   <>
                     <li>
-                      <Link to="/business/companies" style={linkStyle("/business/companies")}>Perusahaan</Link>
+                      <Link to="/business/companies" className={`link ${isActive("/business/companies")}`}>
+                        Perusahaan
+                      </Link>
                     </li>
                     <li>
-                      <Link to="/business/jobs" style={linkStyle("/business/jobs")}>Pekerjaan</Link>
+                      <Link to="/business/jobs" className={`link ${isActive("/business/jobs")}`}>
+                        Pekerjaan
+                      </Link>
                     </li>
                   </>
                 )}
                 {user.role === "candidate" && (
                   <>
-                    <li><Link to="/" style={linkStyle("/")}>Beranda</Link></li>
-                    <li><Link to="/jobs" style={linkStyle("/jobs")}>Pekerjaan</Link></li>
-                    <li><Link to="/browse" style={linkStyle("/browse")}>Jelajahi</Link></li>
-                    <li><Link to="/perusahaan" style={linkStyle("/perusahaan")}>Perusahaan</Link></li>
-                    <li><Link to="/tentangKami" style={linkStyle("/tentangKami")}>Tentang Kami</Link></li>
+                    <li>
+                      <Link to="/" className={`link ${isActive("/")}`}>
+                        Beranda
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/jobs" className={`link ${isActive("/jobs")}`}>
+                        Pekerjaan
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/perusahaan" className={`link ${isActive("/perusahaan")}`}>
+                        Perusahaan
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/browse" className={`link ${isActive("/browse")}`}>
+                        Jelajahi
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/tentangKami" className={`link ${isActive("/tentangKami")}`}>
+                        Tentang Kami
+                      </Link>
+                    </li>
                   </>
                 )}
               </>
@@ -91,11 +117,31 @@ const Navbar = () => {
           {!user ? (
             <div className="flex items-center gap-2">
               <ul className="flex font-medium items-center gap-5">
-                <li><Link to="/" style={linkStyle("/")}>Beranda</Link></li>
-                <li><Link to="/jobs" style={linkStyle("/jobs")}>Pekerjaan</Link></li>
-                <li><Link to="/browse" style={linkStyle("/browse")}>Jelajahi</Link></li>
-                <li><Link to="/perusahaan" style={linkStyle("/perusahaan")}>Perusahaan</Link></li>
-                <li><Link to="/tentangKami" style={linkStyle("/tentangKami")}>Tentang Kami</Link></li>
+                <li>
+                  <Link to="/" className={`link ${isActive("/")}`}>
+                    Beranda
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/jobs" className={`link ${isActive("/jobs")}`}>
+                    Pekerjaan
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/browse" className={`link ${isActive("/browse")}`}>
+                    Jelajahi
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/perusahaan" className={`link ${isActive("/perusahaan")}`}>
+                    Perusahaan
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/tentangKami" className={`link ${isActive("/tentangKami")}`}>
+                    Tentang Kami
+                  </Link>
+                </li>
               </ul>
               <Link to="/login">
                 <Button variant="outline">Masuk</Button>
@@ -131,7 +177,7 @@ const Navbar = () => {
                     </div>
                   )}
                   <div className="flex w-fit items-center gap-2 cursor-pointer">
-                    <Settings /> {/* Settings icon */}
+                    <Settings />
                     <Link to="/setting">
                       <Button variant="Link" className="underline-on-click">Pengaturan</Button>
                     </Link>
