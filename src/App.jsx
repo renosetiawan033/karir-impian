@@ -19,7 +19,7 @@ import JobsByCompanyId from './components/admin/JobsBycompanyId'
 import User from './components/admin/User'
 import TentangKami from './components/TentangKami'
 import Perusahaan from './components/Perusahaan'
-import Pekerjaan from './components/Pekerjaan'
+import Pekerjaan from './components/pekerjaan'
 import CompanyDescription from './components/CompanyDescription'
 import Setting from './components/Setting'
 
