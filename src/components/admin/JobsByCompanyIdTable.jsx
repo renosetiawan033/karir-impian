@@ -45,7 +45,7 @@ const JobsByCompanyIdTable = ({ jobs }) => {
     };
 
     return (
-        <Table>
+        <Table className='bg-white'>
             <TableCaption>Pekerjaan berdasarkan Perusahaan</TableCaption>
             <TableHeader>
                 <TableRow>

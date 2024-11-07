@@ -43,7 +43,7 @@ const CompaniesTable = () => {
     };
     return (
         <div>
-            <Table>
+            <Table className='bg-white'>
                 <TableCaption>Daftar perusahaan Anda</TableCaption>
                 <TableHeader>
                     <TableRow>

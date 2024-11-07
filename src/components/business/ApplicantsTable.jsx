@@ -40,7 +40,7 @@ const ApplicantsTable = () => {
 
     return (
         <div>
-            <Table>
+            <Table className='bg-white'>
                 <TableCaption>Daftar pelamar</TableCaption>
                 <TableHeader>
                     <TableRow>

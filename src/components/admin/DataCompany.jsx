@@ -15,7 +15,7 @@ const DateCompany = () => {
     const { companies, searchCompanyByText } = useSelector(store => store.company);
     const [filterCompany, setFilterCompany] = useState(companies);
     const [loading, setLoading] = useState(false);
-    const navigate = useNavigate();
+    const navigate = useNavigate(); 
     const token = localStorage.getItem('token');
 
     useEffect(() => {
@@ -68,7 +68,7 @@ const DateCompany = () => {
 
     return (
         <div>
-            <Table>
+            <Table className='bg-white'>
                 <TableCaption>Daftar perusahaan</TableCaption>
                 <TableHeader>
                     <TableRow>

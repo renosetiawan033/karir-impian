@@ -1,5 +1,5 @@
-import React from "react";
-import logo from "../../assets/logo.jpg";
+import React, { useState } from "react";
+import logo from "../../assets/logo.png";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
@@ -16,6 +16,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const logoutHandler = async () => {
     try {
@@ -39,8 +40,8 @@ const Navbar = () => {
   const isActive = (path) => location.pathname === path ? "active" : "";
 
   return (
-    <div className="bg-white">
-      <div className="flex items-center justify-between mx-auto max-w-7xl h-16">
+    <div className="bg-blue-400">
+      <div className="flex items-center justify-between mx-auto max-w-7xl h-16 px-4 sm:px-6 lg:px-8">
         <div className="-ml-20">
           <img
             src={logo}
@@ -49,7 +50,9 @@ const Navbar = () => {
             style={{ width: "300px", height: "auto" }}
           />
         </div>
-        <div className="flex items-center gap-12">
+
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center gap-12">
           <ul className="flex font-medium items-center gap-5">
             {user ? (
               <>
@@ -191,7 +194,173 @@ const Navbar = () => {
             </Popover>
           )}
         </div>
+
+        {/* Mobile Menu Toggle */}
+        <div className="md:hidden flex items-center gap-4">
+          <button
+            className="text-white"
+            onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            <svg
+              className="w-6 h-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
+
+      {/* Mobile Navigation */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-blue-500 p-4">
+          <ul className="flex flex-col items-center gap-4">
+            {user ? (
+              <>
+                {user.role === "administrator" && (
+                  <>
+                    <li>
+                      <Link to="/admin/company" className={`link ${isActive("/admin/company")}`}>
+                        Perusahaan
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/admin/pengguna" className={`link ${isActive("/admin/pengguna")}`}>
+                        Pengguna
+                      </Link>
+                    </li>
+                    <li>
+                  <Link to="/setting" className="underline">Pengaturan</Link>
+                </li>
+                <li>
+                  <span
+                    onClick={logoutHandler}
+                    className="underline cursor-pointer"
+                  >
+                    Keluar
+                  </span>
+                </li>
+                  </>
+                )}
+                {user.role === "business" && (
+                  <>
+                    <li>
+                      <Link to="/business/companies" className={`link ${isActive("/business/companies")}`}>
+                        Perusahaan
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/business/jobs" className={`link ${isActive("/business/jobs")}`}>
+                        Pekerjaan
+                      </Link>
+                    </li>
+                <li>
+                  <Link to="/setting" className="underline">Pengaturan</Link>
+                </li>
+                <li>
+                  <span
+                    onClick={logoutHandler}
+                    className="underline cursor-pointer"
+                  >
+                    Keluar
+                  </span>
+                </li>
+                  </>
+                )}
+                {user.role === "candidate" && (
+                  <>
+                    <li>
+                      <Link to="/" className={`link ${isActive("/")}`}>
+                        Beranda
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/jobs" className={`link ${isActive("/jobs")}`}>
+                        Pekerjaan
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/perusahaan" className={`link ${isActive("/perusahaan")}`}>
+                        Perusahaan
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/browse" className={`link ${isActive("/browse")}`}>
+                        Jelajahi
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/tentangKami" className={`link ${isActive("/tentangKami")}`}>
+                        Tentang Kami
+                      </Link>
+                    </li>
+                  </>
+                )}
+                <li>
+                  <Link to="/profile" className="underline">Lihat Profil</Link>
+                </li>
+                <li>
+                  <Link to="/setting" className="underline">Pengaturan</Link>
+                </li>
+                <li>
+                  <span
+                    onClick={logoutHandler}
+                    className="underline cursor-pointer"
+                  >
+                    Keluar
+                  </span>
+                </li>
+              </>
+            )  : (
+              <>
+                <li>
+                  <Link to="/" className={`link ${isActive("/")}`}>
+                    Beranda
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/jobs" className={`link ${isActive("/jobs")}`}>
+                    Pekerjaan
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/browse" className={`link ${isActive("/browse")}`}>
+                    Jelajahi
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/perusahaan" className={`link ${isActive("/perusahaan")}`}>
+                    Perusahaan
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/tentangKami" className={`link ${isActive("/tentangKami")}`}>
+                    Tentang Kami
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/login">
+                    <Button variant="outline">Masuk</Button>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/signup">
+                    <Button className="bg-blue-600 hover:bg-[#0026A3]">Daftar</Button>
+                  </Link>
+                </li>
+              </>
+            )}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };

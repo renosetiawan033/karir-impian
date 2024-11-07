@@ -41,7 +41,7 @@ const BusinessJobsTable = () => {
 
     return (
         <div>
-            <Table>
+            <Table className='bg-white'>
                 <TableCaption>Daftar pekerjaan anda</TableCaption>
                 <TableHeader>
                     <TableRow>

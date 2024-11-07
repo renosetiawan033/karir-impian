@@ -80,7 +80,7 @@
 }
 
 .link.active {
-  color: blue; /* Color when the link is active */
+  color: white; /* Color when the link is active */
 }
 
 .link::after {
@@ -95,11 +95,11 @@
 }
 
 .link:hover::after {
-  background-color: #A9A9A9; /* Color when hovered */
+  background-color: #fff; /* Color when hovered */
 }
 
 .link.active::after {
-  background-color: #0039FF; /* Keep the line when active */
+  background-color: #fff; /* Keep the line when active */
 }
 
 

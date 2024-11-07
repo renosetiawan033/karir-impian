@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 
 const Job = ({ job }) => {
   const navigate = useNavigate();
-
   const daysAgoFunction = (mongodbTime) => {
     const createdAt = new Date(mongodbTime);
     const currentTime = new Date();
@@ -20,6 +19,7 @@ const Job = ({ job }) => {
 
   return (
     <div className="flex flex-col h-full p-4 rounded-lg shadow-lg bg-white border border-gray-200 transition-transform transform hover:scale-105">
+      
       <div className="flex items-center justify-between mb-2">
         <p className="text-sm text-gray-500">{daysAgoFunction(job?.createdAt) === 0 ? "Hari ini" : `${daysAgoFunction(job?.createdAt)} Hari yang lalu`}</p>
       </div>

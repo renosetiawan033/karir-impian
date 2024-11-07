@@ -42,7 +42,7 @@ const DataUser = () => {
 
     return (
         <div>
-            <Table>
+            <Table className='bg-white'>
                 <TableCaption>Daftar pengguna </TableCaption>
                 <TableHeader>
                     <TableRow>
