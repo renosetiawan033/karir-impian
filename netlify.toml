@@ -1,0 +1,4 @@
+[build]
+  # Tentukan direktori yang digunakan Netlify untuk build
+  publish = "build"  # Sesuaikan ini dengan folder output proyek Anda, misalnya "dist" untuk Vue atau "out" untuk Next.js
+  command = "npm run build"  # Perintah build, sesuaikan dengan perintah build proyek Anda
