@@ -277,17 +277,6 @@ const Navbar = () => {
                         Pengguna
                       </Link>
                     </li>
-                    <li>
-                  <Link to="/setting" className="underline">Pengaturan</Link>
-                </li>
-                <li>
-                  <span
-                    onClick={logoutHandler}
-                    className="underline cursor-pointer"
-                  >
-                    Keluar
-                  </span>
-                </li>
                   </>
                 )}
                 {user.role === "business" && (
@@ -302,17 +291,6 @@ const Navbar = () => {
                         Pekerjaan
                       </Link>
                     </li>
-                <li>
-                  <Link to="/setting" className="underline">Pengaturan</Link>
-                </li>
-                <li>
-                  <span
-                    onClick={logoutHandler}
-                    className="underline cursor-pointer"
-                  >
-                    Keluar
-                  </span>
-                </li>
                   </>
                 )}
                 {user.role === "candidate" && (
