@@ -13,7 +13,7 @@ const LatestJobs = () => {
       <h1 className='text-2xl md:text-4xl font-bold'>
         Lowongan Kerja <span className='text-[#0039FF]'>Teratas</span>
       </h1>
-      <div className='grid md:grid-cols-3 gap-4 my-5'>
+      <div className='grid md:grid-cols-3 gap-4 my-5 mx-auto'>
         {!isLoggedIn ? (
           <div>
             <p>Anda harus login untuk melihat lowongan kerja.</p>

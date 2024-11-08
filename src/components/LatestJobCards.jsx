@@ -12,14 +12,14 @@ const LatestJobCards = ({ job }) => {
   return (
     <div
       onClick={() => navigate(`/description/${job._id}`)}
-      className='flex flex-col h-full p-6 rounded-lg shadow-lg bg-white border border-gray-200 cursor-pointer transition-transform transform hover:scale-105 hover:shadow-xl duration-300'
+      className='flex flex-col h-full max-w-[300px]  p-6 rounded-lg shadow-lg bg-white border border-gray-200 cursor-pointer transition-transform transform hover:scale-105 hover:shadow-xl duration-300'
     >
       <div>
-        <h1 className='font-semibold text-lg text-gray-800'>{job?.company?.name}</h1>
+        <h1 className='font-semibold md:text-lg text-gray-800'>{job?.company?.name}</h1>
         <p className='text-sm text-gray-500'>{job?.location}</p>
       </div>
       <div className='flex-grow'> {/* Memastikan div ini tumbuh untuk mengisi ruang */}
-        <h1 className='font-bold text-xl my-1 text-gray-900'>{job?.title}</h1>
+        <h1 className='font-bold md:text-xl my-1 text-gray-900'>{job?.title}</h1>
         <p className='text-sm text-gray-600 min-h-[60px]'>{truncateDescription(job?.description)}</p> {/* Menambahkan truncate */}
       </div>
       <div className='flex flex-wrap items-center gap-2 mt-4'>
