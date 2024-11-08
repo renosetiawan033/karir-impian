@@ -38,8 +38,7 @@ const DateCompany = () => {
             });
             if (res.data.success) {
                 toast.success(res.data.message);
-                // Update the company list or fetch it again
-                // You might want to refresh or refetch the companies here
+                // Optionally refresh or update the company list here
             }
         } catch (error) {
             console.error(`Error accepting company: ${error}`);
@@ -48,7 +47,7 @@ const DateCompany = () => {
             setLoading(false);
         }
     };
-    
+
     const handleDeleteCompany = async (companyId) => {
         try {
             const response = await axios.delete(`${COMPANY_API_END_POINT}/delete/${companyId}`, {
@@ -67,16 +66,16 @@ const DateCompany = () => {
     };
 
     return (
-        <div>
-            <Table className='bg-white'>
+        <div className="overflow-x-auto px-4">
+            <Table className="bg-white text-xs sm:text-sm">
                 <TableCaption>Daftar perusahaan</TableCaption>
                 <TableHeader>
                     <TableRow>
-                        <TableHead>Logo</TableHead>
-                        <TableHead>Nama</TableHead>
-                        <TableHead>Tanggal</TableHead>
-                        <TableHead>Status</TableHead>
-                        <TableHead className="text-center">Tindakan</TableHead>
+                        <TableHead className="text-xs sm:text-sm">Logo</TableHead>
+                        <TableHead className="text-xs sm:text-sm">Nama</TableHead>
+                        <TableHead className="text-xs sm:text-sm">Tanggal</TableHead>
+                        <TableHead className="text-xs sm:text-sm">Status</TableHead>
+                        <TableHead className="text-xs sm:text-sm text-center">Tindakan</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -89,24 +88,22 @@ const DateCompany = () => {
                     ) : (
                         filterCompany.map((company) => (
                             <TableRow key={company._id} className="cursor-pointer hover:bg-gray-100">
-                                <TableCell>
-                                    <Avatar>
+                                <TableCell className="py-2 px-3">
+                                    <Avatar className="w-8 h-8 sm:w-10 sm:h-10">
                                         <AvatarImage src={company.logo} alt={company.name} />
                                     </Avatar>
                                 </TableCell>
-                                <TableCell>
-                                    <Link to={`/admin/alljob/${company._id}`}>
-                                        {company.name}
-                                    </Link>
+                                <TableCell className="text-xs sm:text-sm">
+                                    <Link to={`/admin/alljob/${company._id}`} className="truncate">{company.name}</Link>
                                 </TableCell>
-                                <TableCell>{new Date(company.createdAt).toLocaleDateString()}</TableCell>
-                                <TableCell>{company.isApproved}</TableCell>
+                                <TableCell className="text-xs sm:text-sm">{new Date(company.createdAt).toLocaleDateString()}</TableCell>
+                                <TableCell className="text-xs sm:text-sm">{company.isApproved}</TableCell>
                                 <TableCell className="text-center">
-                                    <div className="flex items-center justify-center space-x-2">
+                                    <div className="flex items-center justify-center space-x-1">
                                         <Popover>
-                                        <PopoverTrigger>
-                                             <MoreHorizontal />
-                                        </PopoverTrigger>
+                                            <PopoverTrigger>
+                                                <MoreHorizontal className="cursor-pointer text-sm" />
+                                            </PopoverTrigger>
                                             <PopoverContent className="w-32">
                                                 {loading ? (
                                                     <div>Silakan Tunggu...</div>
@@ -115,24 +112,23 @@ const DateCompany = () => {
                                                         <div
                                                             key={status}
                                                             onClick={() => handleAcceptCompany(status, company._id)}
-                                                            className='flex w-fit items-center my-2 cursor-pointer hover:bg-gray-100'
+                                                            className="flex w-fit items-center my-2 cursor-pointer hover:bg-gray-100 text-xs sm:text-sm"
                                                         >
                                                             <span>{status}</span>
                                                         </div>
                                                     ))
                                                 )}
-                                                            <div
-                                                        onClick={(e) => {
-                                                            e.stopPropagation();
-                                                            handleDeleteCompany(company._id);
-                                                        }}
-                                                        className='flex w-fit items-center my-2 cursor-pointer hover:bg-gray-100'
-                                                    >
-                                                        Hapus
-                                                    </div>
+                                                <div
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        handleDeleteCompany(company._id);
+                                                    }}
+                                                    className="flex w-fit items-center my-2 cursor-pointer hover:bg-gray-100 text-xs sm:text-sm"
+                                                >
+                                                    <span>Hapus</span>
+                                                </div>
                                             </PopoverContent>
                                         </Popover>
-                                       
                                     </div>
                                 </TableCell>
                             </TableRow>
@@ -142,6 +138,6 @@ const DateCompany = () => {
             </Table>
         </div>
     );
-}
+};
 
 export default DateCompany;

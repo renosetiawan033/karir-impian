@@ -1,29 +1,29 @@
-import React, { useEffect, useState } from 'react'
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '../ui/table'
-import { Avatar, AvatarImage } from '../ui/avatar'
-import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
-import { Edit2, MoreHorizontal, Trash2 } from 'lucide-react'
-import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { toast } from 'sonner'
-import { COMPANY_API_END_POINT } from '@/utils/constant'
-import axios from 'axios'
+import React, { useEffect, useState } from 'react';
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '../ui/table';
+import { Avatar, AvatarImage } from '../ui/avatar';
+import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
+import { Edit2, MoreHorizontal, Trash2 } from 'lucide-react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
+import { COMPANY_API_END_POINT } from '@/utils/constant';
+import axios from 'axios';
 
 const CompaniesTable = () => {
     const { companies, searchCompanyByText } = useSelector(store => store.company);
     const [filterCompany, setFilterCompany] = useState(companies);
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
-    useEffect(()=>{
-        const filteredCompany = companies.length >= 0 && companies.filter((company)=>{
-            if(!searchCompanyByText){
-                return true
-            };
-            return company?.name?.toLowerCase().includes(searchCompanyByText.toLowerCase());
 
+    useEffect(() => {
+        const filteredCompany = companies.length >= 0 && companies.filter((company) => {
+            if (!searchCompanyByText) {
+                return true;
+            }
+            return company?.name?.toLowerCase().includes(searchCompanyByText.toLowerCase());
         });
         setFilterCompany(filteredCompany);
-    },[companies,searchCompanyByText])
+    }, [companies, searchCompanyByText]);
 
     const handleDeleteCompany = async (companyId) => {
         try {
@@ -41,55 +41,61 @@ const CompaniesTable = () => {
             toast.error(error.response?.data?.message || 'An error occurred while deleting the company.');
         }
     };
+
     return (
-        <div>
-            <Table className='bg-white'>
+        <div className="overflow-x-auto">
+            <Table className="bg-white text-xs sm:text-sm">
                 <TableCaption>Daftar perusahaan Anda</TableCaption>
                 <TableHeader>
                     <TableRow>
-                        <TableHead>Logo</TableHead>
-                        <TableHead>Nama</TableHead>
-                        <TableHead>Tanggal</TableHead>
-                        <TableHead className="text-right">Tindakan</TableHead>
+                        <TableHead className="text-xs sm:text-sm">Logo</TableHead>
+                        <TableHead className="text-xs sm:text-sm">Nama</TableHead>
+                        <TableHead className="text-xs sm:text-sm">Tanggal</TableHead>
+                        <TableHead className="text-xs sm:text-sm text-right">Tindakan</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {
-                        filterCompany?.map((company) => (
-                            <tr>
-                                <TableCell>
-                                    <Avatar>
-                                        <AvatarImage src={company.logo}/>
-                                    </Avatar>
-                                </TableCell>
-                                <TableCell>{company.name}</TableCell>
-                                <TableCell>{company.createdAt.split("T")[0]}</TableCell>
-                                <TableCell className="text-right cursor-pointer">
-                                    <Popover>
-                                        <PopoverTrigger><MoreHorizontal /></PopoverTrigger>
-                                        <PopoverContent className="w-32">
-                                            <div onClick={()=> navigate(`/business/companies/${company._id}`)} className='flex items-center gap-2 w-fit cursor-pointer'>
-                                                <Edit2 className='w-4' />
-                                                <span>Perbarui</span>
-                                            </div>
-                                            <div  onClick={(e) => {
+                    {filterCompany?.map((company) => (
+                        <TableRow key={company._id} className="cursor-pointer hover:bg-gray-100">
+                            <TableCell className="py-2 px-3">
+                                <Avatar className="w-8 h-8 sm:w-10 sm:h-10">
+                                    <AvatarImage src={company.logo} alt={company.name} />
+                                </Avatar>
+                            </TableCell>
+                            <TableCell className="text-xs sm:text-sm">{company.name}</TableCell>
+                            <TableCell className="text-xs sm:text-sm">{company.createdAt.split("T")[0]}</TableCell>
+                            <TableCell className="text-right py-2">
+                                <Popover>
+                                    <PopoverTrigger>
+                                        <MoreHorizontal className="w-5 h-5 text-gray-600" />
+                                    </PopoverTrigger>
+                                    <PopoverContent className="w-32 text-xs sm:text-sm">
+                                        <div
+                                            onClick={() => navigate(`/business/companies/${company._id}`)}
+                                            className="flex items-center gap-2 w-fit cursor-pointer hover:bg-gray-100"
+                                        >
+                                            <Edit2 className="w-4 h-4" />
+                                            <span>Perbarui</span>
+                                        </div>
+                                        <div
+                                            onClick={(e) => {
                                                 e.stopPropagation();
                                                 handleDeleteCompany(company._id);
-                                            }} className='flex items-center w-fit gap-2 cursor-pointer mt-2'>
-                                        <Trash2  className='w-4'/>
-                                     <span>Hapus</span>
+                                            }}
+                                            className="flex items-center gap-2 w-fit cursor-pointer mt-2 hover:bg-gray-100"
+                                        >
+                                            <Trash2 className="w-4 h-4" />
+                                            <span>Hapus</span>
                                         </div>
-                                        </PopoverContent>
-                                    </Popover>
-                                </TableCell>
-                            </tr>
-
-                        ))
-                    }
+                                    </PopoverContent>
+                                </Popover>
+                            </TableCell>
+                        </TableRow>
+                    ))}
                 </TableBody>
             </Table>
         </div>
-    )
-}
+    );
+};
 
-export default CompaniesTable
+export default CompaniesTable;

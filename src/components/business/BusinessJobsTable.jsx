@@ -8,8 +8,8 @@ import { JOB_API_END_POINT } from '@/utils/constant';
 import axios from 'axios';
 import { toast } from 'sonner';
 
-
 const token = localStorage.getItem('token');
+
 const BusinessJobsTable = () => {
     const { allBusinessJobs, searchJobByText } = useSelector(store => store.job);
     const [filterJobs, setFilterJobs] = useState(allBusinessJobs);
@@ -40,43 +40,50 @@ const BusinessJobsTable = () => {
     };
 
     return (
-        <div>
-            <Table className='bg-white'>
-                <TableCaption>Daftar pekerjaan anda</TableCaption>
+        <div className="overflow-x-auto">
+            <Table className="bg-white text-xs sm:text-sm">
+                <TableCaption className="text-sm sm:text-base">Daftar pekerjaan anda</TableCaption>
                 <TableHeader>
                     <TableRow>
-                        <TableHead>Nama Perusahaan</TableHead>
-                        <TableHead>Posisi</TableHead>
-                        <TableHead>Tanggal</TableHead>
-                        <TableHead className="text-right">Tindakan</TableHead>
+                        <TableHead className="text-xs sm:text-sm">Nama Perusahaan</TableHead>
+                        <TableHead className="text-xs sm:text-sm">Posisi</TableHead>
+                        <TableHead className="text-xs sm:text-sm">Tanggal</TableHead>
+                        <TableHead className="text-xs sm:text-sm text-right">Tindakan</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
                     {filterJobs?.map((job) => (
-                        <tr key={job._id}> {/* Add key here */}
-                            <TableCell>{job?.company?.name}</TableCell>
-                            <TableCell>{job?.title}</TableCell>
-                            <TableCell>{job?.createdAt.split("T")[0]}</TableCell>
-                            <TableCell className="text-right cursor-pointer">
+                        <TableRow key={job._id} className="cursor-pointer hover:bg-gray-100">
+                            <TableCell className="py-2 px-3 text-xs sm:text-sm">{job?.company?.name}</TableCell>
+                            <TableCell className="py-2 px-3 text-xs sm:text-sm">{job?.title}</TableCell>
+                            <TableCell className="py-2 px-3 text-xs sm:text-sm">{job?.createdAt.split("T")[0]}</TableCell>
+                            <TableCell className="text-right py-2 px-3">
                                 <Popover>
-                                    <PopoverTrigger><MoreHorizontal /></PopoverTrigger>
-                                    <PopoverContent className="w-32">
-                                        <div onClick={() => navigate(`/business/jobs/${job._id}/applicants`)} className='flex items-center w-fit gap-2 cursor-pointer mt-2'>
-                                            <Eye className='w-4'/>
-                                            <span>Pelamar</span>
+                                    <PopoverTrigger>
+                                        <MoreHorizontal className="w-5 h-5 text-gray-600" />
+                                    </PopoverTrigger>
+                                    <PopoverContent className="w-32 text-xs sm:text-sm">
+                                        <div
+                                            onClick={() => navigate(`/business/jobs/${job._id}/applicants`)}
+                                            className="flex items-center gap-2 w-fit cursor-pointer mt-2 hover:bg-gray-100"
+                                        >
+                                            <Eye className="w-4 h-4" />
+                                            <span className="text-xs sm:text-sm">Pelamar</span>
                                         </div>
-                                        <div onClick={(e) => { 
-                                        e.stopPropagation(); 
-                                        console.log(`Deleting job: ${job._id}`); 
-                                        handleDeleteJob(job._id); 
-                                    }} className='flex items-center w-fit gap-2 cursor-pointer mt-2'>
-                                        <Trash2  className='w-4'/>
-                                     <span>Hapus</span>
+                                        <div
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                handleDeleteJob(job._id);
+                                            }}
+                                            className="flex items-center gap-2 w-fit cursor-pointer mt-2 hover:bg-gray-100"
+                                        >
+                                            <Trash2 className="w-4 h-4" />
+                                            <span className="text-xs sm:text-sm">Hapus</span>
                                         </div>
                                     </PopoverContent>
                                 </Popover>
                             </TableCell>
-                        </tr>
+                        </TableRow>
                     ))}
                 </TableBody>
             </Table>
