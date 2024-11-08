@@ -76,7 +76,7 @@ const Jobs = () => {
                         key={job?._id}
                       >
                         {/* Link to Job details page */}
-                        <Link to={`/jobs/${job._id}`}>
+                        <Link to={`/description/${job?._id}`}>
                           <Job job={job} />
                         </Link>
                       </motion.div>

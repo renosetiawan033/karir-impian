@@ -41,7 +41,7 @@ const Browse = () => {
           ) : allJobs.length === 0 ? (
             <p className="text-center text-lg text-black">Pekerjaan tidak ditemukan</p>
           ) : (
-            <div className='grid grid-cols-3 gap-4'>
+            <div className='grid md:grid-cols-3 gap-4'>
               {allJobs.map((job) => (
                 <Job key={job._id} job={job} />
               ))}

@@ -40,7 +40,7 @@ const HeroSection = () => {
         </motion.span>
 
         <motion.h1
-          className='text-5xl font-bold'
+          className='text-2xl md:text-5xl font-bold'
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
@@ -50,7 +50,7 @@ const HeroSection = () => {
         </motion.h1>
 
         <motion.p
-          className='mx-auto max-w-xl text-gray-700'
+          className='text-sm md:text-md mx-auto md:max-w-xl text-gray-700'
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}

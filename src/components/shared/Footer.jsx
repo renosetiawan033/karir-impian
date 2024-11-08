@@ -8,8 +8,8 @@ const Footer = () => {
         <div className="flex flex-row justify-between items-center">
           {/* Left Section (Text) */}
           <div className="mb-4 md:mb-0 text-left">
-            <h2 className="text-xl font-bold text-white">Karir Impian</h2>
-            <p className="text-sm text-gray-200">© 2024 Karir Impian. Semua hak dilindungi undang-undang.</p>
+            <h2 className="md:text-xl font-bold text-white">Karir Impian</h2>
+            <p className="text-xs md:text-sm text-gray-200">© 2024 Karir Impian. Semua hak dilindungi undang-undang.</p>
           </div>
           
           {/* Right Section (Astronaut Image) */}

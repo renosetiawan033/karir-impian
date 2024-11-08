@@ -215,7 +215,8 @@ const Navbar = () => {
                 d="M4 6h16M4 12h16M4 18h16"
               />
             </svg>
-          </button>
+          </button> 
+              
         </div>
       </div>
 
@@ -304,21 +305,8 @@ const Navbar = () => {
                     </li>
                   </>
                 )}
-                <li>
-                  <Link to="/profile" className="underline">Lihat Profil</Link>
-                </li>
-                <li>
-                  <Link to="/setting" className="underline">Pengaturan</Link>
-                </li>
-                <li>
-                  <span
-                    onClick={logoutHandler}
-                    className="underline cursor-pointer"
-                  >
-                    Keluar
-                  </span>
-                </li>
               </>
+              
             )  : (
               <>
                 <li>
