@@ -26,7 +26,7 @@ const Banner = () => {
             <img 
               src={ceweNunjuk}
               alt="Pekerjaan" 
-              className="max-w-[200px] max-h-[400px] rounded-lg object-cover z-10" 
+              className="md:max-w-[200px] md:max-h-[400px] rounded-lg object-cover z-10" 
             />
           </div>
         </div>
@@ -49,7 +49,7 @@ const Banner = () => {
             <img 
               src={ceweNunjuk2}
               alt="Pekerjaan" 
-              className="max-w-full max-h-full rounded-lg object-cover z-10" 
+              className="md:max-w-[250px] md:max-h-[400px] rounded-lg object-cover z-10" 
             />
             <div className="absolute w-60 h-60 bg-blue-600 rounded-full z-0 transform translate-x-1/4 translate-y-1/4"></div>
           </div>
