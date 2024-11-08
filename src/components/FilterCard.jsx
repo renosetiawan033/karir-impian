@@ -28,7 +28,7 @@ const FilterCard = () => {
   }, [selectedValue]);
 
   return (
-    <div className="relative w-full bg-white p-3 rounded-md overflow-hidden">
+    <div className="relative w-full bg-white p-4 rounded-md shadow-lg overflow-hidden">
       {/* Decorative Cloud Shapes */}
       <svg
         className="absolute top-2 left-2 w-1/4 opacity-30"
@@ -70,17 +70,24 @@ const FilterCard = () => {
       <hr className="mt-3 z-10" />
       <RadioGroup value={selectedValue} onValueChange={changeHandler}>
         {fitlerData.map((data, index) => (
-          <div key={index}>
-            <h1 className="font-bold text-lg z-10">{data.fitlerType}</h1>
-            {data.array.map((item, idx) => {
-              const itemId = `id${index}-${idx}`;
-              return (
-                <div className="flex items-center space-x-2 my-2 z-10" key={itemId}>
-                  <RadioGroupItem value={item} id={itemId} />
-                  <Label htmlFor={itemId}>{item}</Label>
-                </div>
-              );
-            })}
+          <div key={index} className="mt-4">
+            <h2 className="font-semibold text-md text-gray-800">{data.fitlerType}</h2>
+            <div className="space-y-2 mt-2">
+              {data.array.map((item, idx) => {
+                const itemId = `id${index}-${idx}`;
+                return (
+                  <div
+                    className="flex items-center space-x-2"
+                    key={itemId}
+                  >
+                    <RadioGroupItem value={item} id={itemId} />
+                    <Label htmlFor={itemId} className="text-sm sm:text-base">
+                      {item}
+                    </Label>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         ))}
       </RadioGroup>

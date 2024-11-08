@@ -5,11 +5,13 @@ import Job from './Job';
 import { useSelector } from 'react-redux';
 import useGetAllJobs from '@/hooks/useGetAllJobs';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Jobs = () => {
   const { allJobs, searchedQuery } = useSelector((store) => store.job);
   const isLoggedIn = useGetAllJobs(); // Assuming this hook returns true if logged in
   const [filterJobs, setFilterJobs] = useState(allJobs);
+  const [isFilterVisible, setIsFilterVisible] = useState(false); // State to toggle filter visibility
 
   useEffect(() => {
     if (searchedQuery) {
@@ -44,15 +46,27 @@ const Jobs = () => {
           />
         </svg>
 
-        <div className='max-w-full mx-auto pt-20 z-20'> {/* Set z-10 to bring content above SVG */}
-          <div className='flex gap-5 mx-auto max-w-7xl'>
-            <div className='w-1/5'>
+        <div className='max-w-full mx-auto pt-20 z-20'>
+          {/* Button to toggle filter visibility */}
+          <button
+            className="md:hidden bg-blue-500 text-white px-3 py-1 rounded-lg mb-4"
+            onClick={() => setIsFilterVisible(!isFilterVisible)}
+          >
+            {isFilterVisible ? 'Sembunyikan Filter' : 'Tampilkan Filter'}
+          </button>
+
+          {/* Flex container for Filter and Jobs */}
+          <div className='flex flex-col md:flex-row gap-5 mx-auto max-w-7xl'>
+            {/* Filter Section */}
+            <div className={`w-full md:w-1/5 ${isFilterVisible ? 'block' : 'hidden md:block'}`}>
               <FilterCard />
             </div>
-            <div className='flex-1 h-[88vh] overflow-y-auto p-5'>
+
+            {/* Job Listings Section */}
+            <div className={`flex-1 h-[88vh] overflow-y-auto p-5 ${isFilterVisible ? 'md:w-4/5' : 'md:w-full'}`}>
               {isLoggedIn ? (
                 filterJobs.length > 0 ? (
-                  <div className='grid grid-cols-3 gap-4'>
+                  <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'>
                     {filterJobs.map((job) => (
                       <motion.div 
                         initial={{ opacity: 0, x: 100 }}
@@ -61,7 +75,10 @@ const Jobs = () => {
                         transition={{ duration: 0.3 }}
                         key={job?._id}
                       >
-                        <Job job={job} />
+                        {/* Link to Job details page */}
+                        <Link to={`/jobs/${job._id}`}>
+                          <Job job={job} />
+                        </Link>
                       </motion.div>
                     ))}
                   </div>
@@ -69,7 +86,7 @@ const Jobs = () => {
                   <span>Tidak ada lowongan</span>
                 )
               ) : (
-                <span >Anda belum login</span>
+                <span>Anda belum login</span>
               )}
             </div>
           </div>
