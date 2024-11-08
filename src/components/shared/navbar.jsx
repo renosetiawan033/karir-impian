@@ -196,7 +196,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu Toggle */}
-        <div className="md:hidden flex items-center gap-4">
+        <div className="md:hidden flex items-center gap-4">    
           <button
             className="text-white"
             onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
@@ -216,6 +216,46 @@ const Navbar = () => {
               />
             </svg>
           </button>
+          {user ? (
+           <Popover>
+              <PopoverTrigger asChild>
+                <Avatar className="cursor-pointer">
+                  <AvatarImage src={user?.profile?.profilePhoto} alt="@shadcn" />
+                </Avatar>
+              </PopoverTrigger>
+              <PopoverContent className="w-80">
+                <div className="flex gap-4 space-y-2">
+                  <Avatar>
+                    <AvatarImage src={user?.profile?.profilePhoto} alt="@shadcn" />
+                  </Avatar>
+                  <div>
+                    <h4 className="font-medium">{user?.fullname}</h4>
+                    <p className="text-sm text-muted-foreground">{user?.profile?.bio}</p>
+                  </div>
+                </div>
+                <div className="flex flex-col my-2 text-gray-600">
+                  {user.role === "candidate" && (
+                    <div className="flex w-fit items-center gap-2 cursor-pointer">
+                      <User2 />
+                      <Link to="/profile">
+                        <Button variant="Link" className="underline-on-click">Lihat Profile</Button>
+                      </Link>
+                    </div>
+                  )}
+                  <div className="flex w-fit items-center gap-2 cursor-pointer">
+                    <Settings />
+                    <Link to="/setting">
+                      <Button variant="Link" className="underline-on-click">Pengaturan</Button>
+                    </Link>
+                  </div>
+                  <div className="flex w-fit items-center gap-2 cursor-pointer">
+                    <LogOut />
+                    <Button onClick={logoutHandler} variant="Link" className="underline-on-click">Keluar</Button>
+                  </div>
+                </div>
+              </PopoverContent>
+            </Popover>
+          ): null}
         </div>
       </div>
 
