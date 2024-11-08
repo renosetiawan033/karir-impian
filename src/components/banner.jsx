@@ -1,6 +1,7 @@
 import React from 'react';
 import ceweNunjuk from '../assets/ceweNunjuk.png';
 import ceweNunjuk2 from '../assets/ceweNunjuk2.png';
+import { Link } from 'react-router-dom';
 
 const Banner = () => {
   return (
@@ -13,12 +14,12 @@ const Banner = () => {
             <p className="text-lg md:text-md text-white mb-6">
               Temukan peluang karir terbaik dan capai impian Anda bersama kami.
             </p>
-            <a 
-              href="/" 
+            <Link 
+              to="/" 
               className="bg-white text-blue-800 py-3 px-6 rounded-full font-semibold shadow-lg transition duration-300 hover:bg-gray-200 transform hover:scale-105"
             >
               Mulai Sekarang
-            </a>
+            </Link>
           </div>
           <div className="w-full md:w-1/2 flex justify-center items-center relative mt-6 md:mt-0">
             {/* Bentuk di belakang gambar */}
@@ -38,12 +39,12 @@ const Banner = () => {
             <p className="text-lg md:text-md text-white mb-6">
               Dapatkan peluang kerja yang sesuai dengan keahlianmu dan mulailah perjalanan karirmu hari ini.
             </p>
-            <a 
-              href="/jobs" 
+            <Link 
+              to="/jobs" 
               className="bg-white text-pink-800 py-3 px-6 rounded-full font-semibold shadow-lg transition duration-300 hover:bg-gray-200 transform hover:scale-105"
             >
               Lihat Lowongan
-            </a>
+            </Link>
           </div>
           <div className="w-full md:w-1/2 flex justify-center items-center relative mt-6 md:mt-0">
             <img 
