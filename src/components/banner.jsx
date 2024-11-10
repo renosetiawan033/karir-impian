@@ -15,7 +15,7 @@ const Banner = () => {
               Temukan peluang karir terbaik dan capai impian Anda bersama kami.
             </p>
             <Link 
-              to="/" 
+              to="/perusahaan" 
               className="bg-white text-blue-800 py-3 px-6 rounded-full font-semibold shadow-lg transition duration-300 hover:bg-gray-200 transform hover:scale-105"
             >
               Mulai Sekarang
