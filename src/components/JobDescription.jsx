@@ -102,6 +102,7 @@ const JobDescription = () => {
       <div className="my-4 space-y-2 sm:space-y-3">
         <h1 className="font-bold text-sm sm:text-base">Posisi <span className="pl-4 font-normal text-gray-800">{singleJob?.title}</span></h1>
         <h1 className="font-bold text-sm sm:text-base">Lokasi <span className="pl-4 font-normal text-gray-800">{singleJob?.location}</span></h1>
+        <h1 className="font-bold text-sm sm:text-base">Yang Dibutuhkan<span className="pl-4 font-normal text-gray-800">{singleJob?.requirements}</span></h1>
         <h1 className="font-bold text-sm sm:text-base">Deskripsi <span className="pl-4 font-normal text-gray-800">{singleJob?.description}</span></h1>
         <h1 className="font-bold text-sm sm:text-base">Pengalaman <span className="pl-4 font-normal text-gray-800">{singleJob?.experienceLevel}</span></h1>
         <h1 className="font-bold text-sm sm:text-base">Gaji <span className="pl-4 font-normal text-gray-800">{singleJob?.salary}</span></h1>
