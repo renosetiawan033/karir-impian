@@ -168,18 +168,6 @@ const Signup = () => {
               />
               <Label>Pebisnis</Label>
             </div>
-            <div className="flex items-center space-x-2">
-              <Input
-                type="radio"
-                name="role"
-                value="administrator"
-                checked={input.role === "administrator"}
-                onChange={changeEventHandler}
-                className="cursor-pointer"
-                required
-              />
-              <Label>Pengurus</Label>
-            </div>
           </RadioGroup>
         </div>
 
